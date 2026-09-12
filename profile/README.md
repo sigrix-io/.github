@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="social-preview.png" alt="Sigrix — the marketplace for vetted AI tools" width="800">
+</p>
+
 ## The marketplace for vetted AI tools
 
 **Buy an AI agent, prompt, skill, persona or assistant once — then run it in the AI tools you already use.**
