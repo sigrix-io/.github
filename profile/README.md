@@ -12,60 +12,6 @@ Independent creators publish prompts, personas, skills, assistants and agents. W
 
 ---
 
-### Open source at Sigrix
-
-The parts of Sigrix that other people build against, we publish, under Apache-2.0. The protocol an agent is run and licensed under is drafted in the open, and so is everything that speaks it: the runner inside every bundle a buyer downloads, the page an agent is run from, the client a seller publishes through and the launcher a buyer's client starts. Bailey, the assistant the solutions sold on Sigrix are built for, is open from its first release, and the library that opens every image uploaded to Sigrix is a package anyone who takes uploads can use.
-
-| Project | What it is | Start with |
-| --- | --- | --- |
-| **[Bailey](https://github.com/sigrix-io/bailey)** | An open-source AI assistant that runs ready-made solutions on your own machine, with your own AI key. | `uvx bailey doctor`, which checks that a machine has what the assistant will need |
-| **[Postern](https://github.com/sigrix-io/postern)** | The open execution and entitlement protocol for packaged AI agents: four HTTP verbs an agent serves, and the licence check the packaging standards leave out. | [The specification](https://github.com/sigrix-io/postern/blob/main/SPEC.md), then `pip install postern-conformance` to check a runner against it |
-| **[Gatehouse](https://github.com/sigrix-io/gatehouse)** | A browser client for Postern: the page a person runs an agent from, for any runner that serves the four verbs. | `npm install @sigrix-io/gatehouse`, or serve its five files from `src/` as they are |
-| **[sigrix-mcp](https://github.com/sigrix-io/sigrix-mcp)** | Publish a prompt, persona or skill to Sigrix from the AI client you already write in. | `uvx sigrix-mcp`, with a seller token from your Sigrix account |
-| **[sigrix-launcher](https://github.com/sigrix-io/sigrix-launcher)** | Start an MCP server you bought on Sigrix from the client you already use. | `uvx sigrix-launcher run <seller>/<listing-id>`, the line a listing's page hands your client |
-| **[sigrix-runtime](https://github.com/sigrix-io/sigrix-runtime)** | The Postern runner inside every bundle Sigrix delivers: the four verbs and the licence check, on the buyer's own machine. | `pip install sigrix-runtime`; every Sigrix bundle already carries it |
-| **[mullion](https://github.com/sigrix-io/mullion)** | One correct way to open an image: EXIF orientation applied, transparency resolved rather than dropped. | `pip install mullion` |
-
-Copy the package names rather than guessing them: `postern` on PyPI and `gatehouse` on npm belong to unrelated projects.
-
-#### How the pieces connect
-
-A seller publishes to Sigrix, Sigrix delivers a bundle, and the page and the runner meet over Postern's four verbs, on the buyer's own machine.
-
-```mermaid
-flowchart TB
-    mcp["<b>sigrix-mcp</b><br/>publishes from a seller's editor"]
-    bailey["<b>Bailey</b><br/>your assistant, on your machine"]
-    sigrix(["<b>sigrix.io</b><br/>the marketplace and distributor"])
-    launcher["<b>sigrix-launcher</b><br/>starts an MCP server you bought"]
-    gatehouse["<b>Gatehouse</b><br/>the page an agent is run from"]
-    mullion["<b>mullion</b><br/>opens every uploaded image"]
-    runtime["<b>sigrix-runtime</b><br/>the runner in every bundle"]
-    postern{{"<b>Postern</b><br/>the protocol: four HTTP verbs"}}
-
-    mcp -->|"1"| sigrix
-    sigrix <-->|"2"| runtime
-    sigrix -->|"3"| gatehouse
-    gatehouse -->|"4"| postern
-    runtime -->|"5"| postern
-    launcher --->|"6"| runtime
-    bailey -..->|"7 · planned"| gatehouse
-    sigrix -->|"8"| mullion
-```
-
-1. **sigrix-mcp → sigrix.io.** A seller publishes a draft from their editor through the seller API, into the review queue.
-2. **sigrix.io ↔ sigrix-runtime.** Every bundle Sigrix delivers carries the runner, and the runner asks Sigrix whether the buyer still owns the listing before it runs anything.
-3. **sigrix.io → Gatehouse.** Sigrix draws its run page and its previews with Gatehouse.
-4. **Gatehouse → Postern.** Gatehouse calls a runner's four verbs over fetch, from the browser.
-5. **sigrix-runtime → Postern.** sigrix-runtime serves all four verbs, at the specification's Level 3.
-6. **sigrix-launcher → sigrix-runtime.** The launcher checks the purchase and downloads the seller's package with the runtime's own client code.
-7. **Bailey → Gatehouse, planned.** Once the assistant itself ships, Bailey draws a solution's apps with Gatehouse.
-8. **sigrix.io → mullion.** Every image uploaded to Sigrix is opened, fitted and encoded by mullion.
-
-**[Every project, and what it ships →](https://sigrix.io/open-source)**  ·  [Postern's project page](https://sigrix.io/open-source/postern)  ·  [Read the specification](https://github.com/sigrix-io/postern/blob/main/SPEC.md)
-
----
-
 ### Five building blocks, from one-line prompt to autonomous agent
 
 A taxonomy that follows complexity. Pick the smallest unit that solves your problem — most people need a prompt, not an agent.
@@ -104,9 +50,8 @@ A taxonomy that follows complexity. Pick the smallest unit that solves your prob
 
 ### About this organisation
 
-Sigrix is a commercial marketplace, and the platform that runs it is closed-source, so you won't find its application code here. What you will find is everything under *Open source at Sigrix* above, each project in its own repository with its own issues and contribution notes, and the public policies that cover the organisation.
+Sigrix is a commercial marketplace and the platform itself is closed-source, so you won't find the application code here. This organisation hosts our public policies, and over time the things that are genuinely useful to publish — listing specifications, starter templates, and integration examples.
 
-- **Building on one of the projects** — issues and pull requests go to that project's own repository; read its `CONTRIBUTING.md` first.
 - **Security researchers** — please read our [security policy](https://github.com/sigrix-io/.github/blob/main/SECURITY.md) before testing, and report privately.
 - **Buyers and sellers** — product questions, bugs and feature requests belong in the [Sigrix hub](https://sigrix.io/hub), not in GitHub issues.
 - **Anything else** — <support@sigrix.io>.
