@@ -57,10 +57,10 @@ flowchart TB
 2. **sigrix.io ↔ sigrix-runtime.** Every bundle Sigrix delivers carries the runner, and the runner asks Sigrix whether the buyer still owns the listing before it runs anything.
 3. **sigrix.io → Gatehouse.** Sigrix draws its run page and its previews with Gatehouse.
 4. **Gatehouse → Postern.** Gatehouse calls a runner's four verbs over fetch, from the browser.
-5. **sigrix-runtime → Postern.** sigrix-runtime serves all four verbs, at the specification's Level 3.
-6. **sigrix-launcher → sigrix-runtime.** The launcher checks the purchase and downloads the seller's package with the runtime's own client code.
-7. **Bailey → Gatehouse, planned.** Once the assistant itself ships, Bailey draws a solution's apps with Gatehouse.
-8. **sigrix.io → mullion.** Every image uploaded to Sigrix is opened, fitted and encoded by mullion.
+5. **sigrix-runtime → Postern.** sigrix-runtime serves the four verbs as the specification's complete implementation, the entitlement check included.
+7. **sigrix-launcher → sigrix-runtime.** The launcher checks the purchase and downloads the seller's package with the runtime's own client code.
+8. **Bailey → Gatehouse, planned.** Once the assistant itself ships, Bailey draws a solution's apps with Gatehouse.
+9. **sigrix.io → mullion.** Every image uploaded to Sigrix is opened, fitted and encoded by mullion.
 
 **[Every project, and what it ships →](https://sigrix.io/open-source)**  ·  [Postern's project page](https://sigrix.io/open-source/postern)  ·  [Read the specification](https://github.com/sigrix-io/postern/blob/main/SPEC.md)
 
