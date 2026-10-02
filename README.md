@@ -31,3 +31,11 @@ inherit it.
 `profile/README.md` is public and un-cached — a push is live immediately. The
 marketplace copy in it is mirrored from [sigrix.io/about](https://sigrix.io/about);
 if the site's positioning changes, change it here too.
+
+Its *Open source at Sigrix* section is mirrored from
+[sigrix.io/open-source](https://sigrix.io/open-source): the project list, the line
+each project starts with, and the map of how they connect, numbered in the same
+order as the page's. A project added, renamed or connected differently there is
+an edit here too, and so is a connection that stops being planned. The section
+states no release versions on purpose: a version typed here is stale the day
+the next release ships, and each package's registry page already says it.
