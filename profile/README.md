@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="social-preview.png" alt="Sigrix — the marketplace for vetted AI tools" width="800">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo-on-dark.svg">
+    <img src="logo.svg" alt="Sigrix" width="280">
+  </picture>
 </p>
 
 ## The marketplace for vetted AI tools
