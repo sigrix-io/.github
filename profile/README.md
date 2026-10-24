@@ -34,6 +34,13 @@ Copy the package names rather than guessing them: `postern` and `herald` on PyPI
 
 A seller publishes to Sigrix, Sigrix delivers a bundle, and the page and the runner meet over Postern's four verbs, on the buyer's own machine.
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="open-source-map-light.jpg">
+    <img src="open-source-map.jpg" alt="How the Sigrix open-source projects connect" width="800">
+  </picture>
+</p>
+
 ```mermaid
 flowchart TB
     herald["<b>Herald</b><br/>posts one announcement everywhere"]
