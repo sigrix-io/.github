@@ -14,7 +14,7 @@ Independent creators publish prompts, personas, skills, assistants and agents. W
 
 ### Open source at Sigrix
 
-The parts of Sigrix that other people build against, we publish, under Apache-2.0. The protocol an agent is run and licensed under is drafted in the open, and so is everything that speaks it: the runner inside every bundle a buyer downloads, the page an agent is run from, the client a seller publishes through and the launcher a buyer's client starts. Bailey, the assistant the solutions sold on Sigrix are built for, is open from its first release, and the library that opens every image uploaded to Sigrix is a package anyone who takes uploads can use.
+The parts of Sigrix that other people build against, we publish, under Apache-2.0. The protocol an agent is run and licensed under is drafted in the open, and so is everything that speaks it: the runner inside every bundle a buyer downloads, the page an agent is run from, the client a seller publishes through and the launcher a buyer's client starts. The format a playbook is written in is published with the cases anyone can check one against. Bailey, the assistant the solutions sold on Sigrix are built for, is open from its first release. The library that opens every image uploaded to Sigrix and the tool that announces each of our updates on every channel we post to are packages anyone can use, for things that have nothing to do with us.
 
 | Project | What it is | Start with |
 | --- | --- | --- |
@@ -25,8 +25,10 @@ The parts of Sigrix that other people build against, we publish, under Apache-2.
 | **[sigrix-launcher](https://github.com/sigrix-io/sigrix-launcher)** | Start an MCP server you bought on Sigrix from the client you already use. | `uvx sigrix-launcher run <seller>/<listing-id>`, the line a listing's page hands your client |
 | **[sigrix-runtime](https://github.com/sigrix-io/sigrix-runtime)** | The Postern runner inside every bundle Sigrix delivers: the four verbs and the licence check, on the buyer's own machine. | `pip install sigrix-runtime`; every Sigrix bundle already carries it |
 | **[mullion](https://github.com/sigrix-io/mullion)** | One correct way to open an image: EXIF orientation applied, transparency resolved rather than dropped. | `pip install mullion` |
+| **[Herald](https://github.com/sigrix-io/herald)** | One announcement to every channel you choose: each text fitted to its platform, shown before it is sent, and posted once. | `pip install herald-post`; the command it installs is `herald` |
+| **[Muster](https://github.com/sigrix-io/muster)** | The playbook format: one playbook.json that says what each file is for, the order a person works through them, and the placeholders a buyer fills in. | [The README](https://github.com/sigrix-io/muster#readme), then check a `playbook.json` against [the schema](https://github.com/sigrix-io/muster/tree/main/schemas) |
 
-Copy the package names rather than guessing them: `postern` on PyPI and `gatehouse` on npm belong to unrelated projects.
+Copy the package names rather than guessing them: `postern` and `herald` on PyPI and `gatehouse` on npm belong to unrelated projects.
 
 #### How the pieces connect
 
@@ -34,6 +36,8 @@ A seller publishes to Sigrix, Sigrix delivers a bundle, and the page and the run
 
 ```mermaid
 flowchart TB
+    herald["<b>Herald</b><br/>posts one announcement everywhere"]
+    muster["<b>Muster</b><br/>the format a playbook is written in"]
     mcp["<b>sigrix-mcp</b><br/>publishes from a seller's editor"]
     bailey["<b>Bailey</b><br/>your assistant, on your machine"]
     sigrix(["<b>sigrix.io</b><br/>the marketplace and distributor"])
@@ -51,6 +55,9 @@ flowchart TB
     launcher --->|"6"| runtime
     bailey -..->|"7 · planned"| gatehouse
     sigrix -->|"8"| mullion
+    sigrix -->|"9"| herald
+    sigrix -->|"10"| muster
+    gatehouse -->|"11"| muster
 ```
 
 1. **sigrix-mcp → sigrix.io.** A seller publishes a draft from their editor through the seller API, into the review queue.
@@ -61,6 +68,9 @@ flowchart TB
 6. **sigrix-launcher → sigrix-runtime.** The launcher checks the purchase and downloads the seller's package with the runtime's own client code.
 7. **Bailey → Gatehouse, planned.** Once the assistant itself ships, Bailey draws a solution's apps with Gatehouse.
 8. **sigrix.io → mullion.** Every image uploaded to Sigrix is opened, fitted and encoded by mullion.
+9. **sigrix.io → Herald.** Sigrix announces each update it publishes on its Hub through Herald, which counts every text the way its channel does and keeps its record of what was posted in Sigrix's own store.
+10. **sigrix.io → Muster.** Sigrix checks every playbook uploaded to it against Muster, with a checker of its own held to Muster's case table, and serves Muster's schema at its permanent address.
+11. **Gatehouse → Muster.** Gatehouse draws what a playbook holds, its files in order and the placeholders a buyer fills in, from its Muster playbook.json.
 
 **[Every project, and what it ships →](https://sigrix.io/open-source)**  ·  [Postern's project page](https://sigrix.io/open-source/postern)  ·  [Read the specification](https://github.com/sigrix-io/postern/blob/main/SPEC.md)
 
