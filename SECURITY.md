@@ -19,9 +19,9 @@ Preferred channel:
 
 If you cannot use GitHub:
 
-- Email **support@sigrix.io** with the subject line `SECURITY:` followed by a
-  short summary. Include enough detail to reproduce the issue (affected URL or
-  endpoint, steps, impact). Please do not attach working exploits.
+- Email **security@sigrix.io** with a short summary as the subject line. Include
+  enough detail to reproduce the issue (affected URL or endpoint, steps,
+  impact). Please do not attach working exploits.
 
 What to expect:
 

@@ -16,7 +16,7 @@ can reproduce the problem, and you get a reply in the same thread.
 ## Found a security vulnerability?
 
 **Do not open an issue.** Follow the [security policy](SECURITY.md) — report it
-privately through GitHub's advisory form or to support@sigrix.io.
+privately through GitHub's advisory form or to security@sigrix.io.
 
 ## Want to publish on the marketplace?
 
